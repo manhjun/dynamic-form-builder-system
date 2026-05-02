@@ -14,6 +14,11 @@ class Form extends Model
     protected $fillable = [
         'title',
         'description',
+        'order',
+    ];
+
+    protected $casts = [
+        'order' => 'integer',
     ];
 
     public function versions(): HasMany
