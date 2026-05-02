@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Services\FieldTypes\Types;
+
+use App\Services\FieldTypes\BaseFieldType;
+
+class RadioField extends BaseFieldType
+{
+    public function getType(): string
+    {
+        return 'radio';
+    }
+
+    public function buildRules(array $validation, bool $required): array
+    {
+        $rules = $this->baseRules($required);
+
+        if (isset($validation['options'])) {
+            $options = implode(',', $validation['options']);
+            $rules[] = "in:{$options}";
+        }
+
+        return $rules;
+    }
+}
